@@ -1,0 +1,77 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     rhoEnergyFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         4000; //1860; // non-dimensional time
+
+deltaT          0.0000000065;
+
+writeControl    adjustableRunTime;
+
+writeInterval   10;//0.01;//0.000065;// 0.025;
+
+purgeWrite      0;//3;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo           0.8;//2.0;// 2.5;//2.0;  //1.0;
+
+maxDeltaT       1.;
+
+pressArtDiff    true; //activate artificial diffusion on pressure
+convArtDiff     false; //activate artificial diffusion on pressure
+
+ducLevelPress       0.05;//1.05;//0.00; //1.05; // pressure diffusion threshold 
+ducLevelConv        0.05;//1.05; // convective diffusion threshold
+epsilon             0.014; // Value useful in ducros sensor. It is U_inf^2/L where L is a characteristic length of the problem. For the cylinder is D. 
+minfty              0.1; // Reference Mach number needed by AUSM flux (turbulent Mach number for HIT)
+kp                  0.25;//25;
+ku                  0.75;//75;
+
+functions
+{
+    writeduc
+    {
+        type writeObjects;
+        functionObjectLibs ( "libutilityFunctionObjects.so" );
+        objects ("ducSensor");
+        writeControl outputTime;
+        writeInterval       1;
+    }
+}
+
+
+// ************************************************************************* //

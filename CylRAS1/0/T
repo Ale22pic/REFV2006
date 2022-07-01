@@ -24,7 +24,9 @@ boundaryField
 
     cylinder
     {
-      type              zeroGradient;
+      //type              zeroGradient;
+      type              fixedValue;
+      value             uniform 1;
     }
 
     periodicity1

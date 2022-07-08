@@ -34,8 +34,8 @@ boundaryField
 
     atmosphere
     {
-        type            zeroGradient; //inletOutlet;
-        //inletValue      uniform 1;
+        type            freestreamPressure; //zeroGradient; //inletOutlet;
+        freestreamValue uniform 1;
     }
 
 }

@@ -24,7 +24,8 @@ boundaryField
 
     walls
     {
-      type              zeroGradient;
+      type              fixedValue; //zeroGradient;
+      value             uniform 1; //for isothermal boundary
     }
 
     sides
@@ -34,7 +35,8 @@ boundaryField
 
     atmosphere
     {
-        type            zeroGradient; //inletOutlet;
+        type            freestream; //zeroGradient; //inletOutlet;
+        freestreamValue uniform 1;
         //inletValue      uniform 1;
     }
 

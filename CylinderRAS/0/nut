@@ -37,8 +37,8 @@ boundaryField
 
     atmosphere
     {
-        type            inletOutlet;
-	inletValue	uniform 3.5496e-7;
+        type            calculated; //inletOutlet;
+	value   	uniform 3.5496e-7;
     }
 
 }
